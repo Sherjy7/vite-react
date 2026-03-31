@@ -1,7 +1,9 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import { ParticleCanvas } from "./Motion";
 
 export default function Shell() {
   const location = useLocation();
@@ -12,13 +14,22 @@ export default function Shell() {
 
   return (
     <div className="app">
-      <div className="bg-glow" aria-hidden="true" />
+      <ParticleCanvas />
+
+      <div className="bg-glow" aria-hidden="true">
+        <div className="bg-orb bg-orb-1" />
+        <div className="bg-orb bg-orb-2" />
+        <div className="bg-orb bg-orb-3" />
+      </div>
+      <div className="bg-grid" aria-hidden="true" />
       <div className="bg-noise" aria-hidden="true" />
 
       <Nav />
 
       <main className="container">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <Outlet key={location.pathname} />
+        </AnimatePresence>
       </main>
 
       <Footer />

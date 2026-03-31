@@ -1,54 +1,85 @@
+import {
+  FadeIn,
+  StaggerContainer,
+  StaggerItem,
+  TextClipReveal,
+  PageTransition,
+} from "../components/Motion";
+
+const steps = [
+  {
+    num: "01",
+    title: "Define the wedge",
+    sub: "One user, one pain, one outcome.",
+  },
+  {
+    num: "02",
+    title: "Prototype fast",
+    sub: "Days \u2192 a demo. Weeks \u2192 a usable tool.",
+  },
+  {
+    num: "03",
+    title: "Instrument everything",
+    sub: "Logs, analytics, and feedback baked-in.",
+  },
+  {
+    num: "04",
+    title: "Scale the system",
+    sub: "Reliability, onboarding, and repeatable ops.",
+  },
+];
+
 export default function Methodology() {
   return (
-    <div className="stack">
-      <section className="pagehead">
-        <div className="mono tiny dim">/// METHODOLOGY</div>
-        <h1 className="page-title">Build. Iterate. Scale.</h1>
-        <p className="page-sub">
-          Our loop is simple: ship something real, shorten feedback cycles, then scale what works.
-        </p>
-      </section>
+    <PageTransition>
+      <div className="stack">
+        <section className="pagehead">
+          <FadeIn>
+            <div className="section-label">/// METHODOLOGY</div>
+          </FadeIn>
+          <h1 className="page-title">
+            <span className="hero-title-line">
+              <TextClipReveal delay={0.1}>Build. Iterate.</TextClipReveal>
+            </span>
+            <span className="hero-title-line">
+              <TextClipReveal delay={0.25}>Scale.</TextClipReveal>
+            </span>
+          </h1>
+          <FadeIn delay={0.4}>
+            <p className="page-sub">
+              Our loop is simple: ship something real, shorten feedback
+              cycles, then scale what works.
+            </p>
+          </FadeIn>
+        </section>
 
-      <section className="section">
-        <div className="section-head">
-          <div className="mono tiny dim">/// OPERATING LOOP</div>
-          <div className="mono tiny dim">0 0 4</div>
-        </div>
+        <div className="divider-animated" />
 
-        <div className="list">
-          <div className="list-item">
-            <div className="mono tiny dim">01</div>
-            <div>
-              <div className="list-title">Define the wedge</div>
-              <div className="list-sub">One user, one pain, one outcome.</div>
+        <section className="section">
+          <FadeIn>
+            <div className="section-head">
+              <div>
+                <div className="section-label">/// OPERATING LOOP</div>
+                <h2 className="section-title">Four steps</h2>
+              </div>
             </div>
-          </div>
+          </FadeIn>
 
-          <div className="list-item">
-            <div className="mono tiny dim">02</div>
-            <div>
-              <div className="list-title">Prototype fast</div>
-              <div className="list-sub">Days → a demo. Weeks → a usable tool.</div>
-            </div>
-          </div>
-
-          <div className="list-item">
-            <div className="mono tiny dim">03</div>
-            <div>
-              <div className="list-title">Instrument everything</div>
-              <div className="list-sub">Logs, analytics, and feedback baked-in.</div>
-            </div>
-          </div>
-
-          <div className="list-item">
-            <div className="mono tiny dim">04</div>
-            <div>
-              <div className="list-title">Scale the system</div>
-              <div className="list-sub">Reliability, onboarding, and repeatable ops.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+          <StaggerContainer className="list" stagger={0.1}>
+            {steps.map((step) => (
+              <StaggerItem key={step.num}>
+                <div className="list-item">
+                  <div className="list-num">{step.num}</div>
+                  <div>
+                    <div className="list-title">{step.title}</div>
+                    <div className="list-sub">{step.sub}</div>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </section>
+      </div>
+    </PageTransition>
   );
 }
